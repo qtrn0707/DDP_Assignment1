@@ -1,0 +1,27 @@
+---
+title: "Developing Data Product - Peer-graded Assignment: R Markdown and Leaflet"
+author: "qtrn0707"
+date: "August 11, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Leaflet plot
+```{r message=F}
+library(leaflet)
+
+data <- data.frame(
+    name = c("Ha Noi", "Ho Chi Minh City", "Da Nang", "Hai Phong", "Can Tho"),
+    lat = c(21.028511, 10.762622, 16.047079, 20.86481, 10.03711),
+    lng = c(105.804817, 106.660172, 108.206230, 106.68345, 105.78825),
+    pop = c(7087700, 7981900, 1007400, 1946000, 1237300))
+
+data %>%
+    leaflet() %>%
+    addTiles() %>%
+    #addMarkers(popup = data$name) %>%
+    addCircleMarkers(popup = data$name, radius = sqrt(data$pop)/100)
+```
